@@ -9,14 +9,14 @@ import "./ERC721Metadata.sol";
 contract SpecialBurgerToken is NFTokenEnumerable, ERC721Metadata {
 
   /**
+   * @dev Address of restaurant user that created this burger
+   */
+  address private sbRest;
+
+  /**
    * @dev A descriptive name for the special burger
    */
   string private sbName;
-
-  /**
-   * @dev An abbreviated name for the special burger
-   */
-  string private sbSymbol;
 
   /**
    * @dev A short description of the special burger
@@ -34,14 +34,14 @@ contract SpecialBurgerToken is NFTokenEnumerable, ERC721Metadata {
    * @param _symbol An abbreviated name for NFTokens.
    */
   constructor(
+    string _rest,
     string _name,
-    string _symbol,
     string _desc
   )
     public
   {
+    sbRest = _rest;
     sbName = _name;
-    sbSymbol = _symbol;
     sbDesc = _desc;
     supportedInterfaces[0x5b5e139f] = true; // ERC721Metadata
   }
@@ -88,6 +88,17 @@ contract SpecialBurgerToken is NFTokenEnumerable, ERC721Metadata {
   /**
    * @dev Returns a descriptive name for a collection of NFTokens.
    */
+  function rest()
+    external
+    view
+    returns (string _rest)
+  {
+    _rest = sbRest;
+  }
+
+  /**
+   * @dev Returns a descriptive name for a collection of NFTokens.
+   */
   function name()
     external
     view
@@ -97,14 +108,14 @@ contract SpecialBurgerToken is NFTokenEnumerable, ERC721Metadata {
   }
 
   /**
-   * @dev Returns an abbreviated name for NFTokens.
+   * @dev Returns the text description of this special burger.
    */
-  function symbol()
+  function desc()
     external
     view
-    returns (string _symbol)
+    returns (string _desc)
   {
-    _symbol = sbSymbol;
+    _desc = sbDesc;
   }
 
   /**

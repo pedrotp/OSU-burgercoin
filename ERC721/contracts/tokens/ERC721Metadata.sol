@@ -7,7 +7,15 @@ pragma solidity ^0.4.23;
 interface ERC721Metadata {
 
   /**
-   * @dev Returns a descriptive name for a collection of NFTs in this contract.
+   * @dev Returns the restaurant owner of this special burger.
+   */
+  function rest()
+    external
+    view
+    returns (string _rest);
+
+  /**
+   * @dev Returns a descriptive name for this collection of special burgers.
    */
   function name()
     external
@@ -15,12 +23,12 @@ interface ERC721Metadata {
     returns (string _name);
 
   /**
-   * @dev Returns a abbreviated name for a collection of NFTs in this contract.
+   * @dev Returns the text description of this special burger.
    */
-  function symbol()
+  function desc()
     external
     view
-    returns (string _symbol);
+    returns (string _desc);
 
   /**
    * @dev Returns a distinct Uniform Resource Identifier (URI) for a given asset. It Throws if
