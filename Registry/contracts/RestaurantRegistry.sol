@@ -25,6 +25,11 @@ contract RestaurantRegistry {
     restaurant[msg.sender] = Restaurant(name, key, false);
   }
 
+  function editName(string _name) public {
+    restaurant[msg.sender].name = _name;
+    restaurant[msg.sender].authorized = false;
+  }
+
   function authorizeRestaurant(address _rest) public {
     require(msg.sender == authorizer);
     restaurant[_rest].authorized = true;
